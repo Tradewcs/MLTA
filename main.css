@@ -1,0 +1,21 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+	text-align: center;
+}
+
+.input {
+	text-align: center;
+}
+
+.input_n {
+	width: 50px;
+	
+}
+
+.wrapper {
+	margin-left: 200px;
+	margin-right: 200px;
+}
