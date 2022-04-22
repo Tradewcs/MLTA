@@ -2,6 +2,16 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+table td {
+	padding: 10px;
+	border: 1px solid black;
+	margin: 0;
+}
+
+table tr {
+	margin: 0;
+}
+
 h2 {
 	text-align: center;
 }
@@ -14,6 +24,7 @@ h2 {
 	width: 50px;
 	
 }
+
 
 .wrapper {
 	margin-left: 200px;

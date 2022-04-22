@@ -1,19 +1,37 @@
-var input_f = document.querySelector('.input_f');
 
 var button = document.querySelector('.calculate_button');
 
-var body = document.querySelector('body');
+function createTable(parent, cols, rows) {
+	let table = document.createElement('table');
 
+	for (let i = 0; i < rows; i++) {
+		let tr = document.createElement('tr');
+		
+		for (let j = 0; j < cols; j++) {
+			let td = document.createElement('td');
+			tr.appendChild(td);
+		}
+
+		table.appendChild(tr);
+	}
+
+	parent.appendChild(table);
+}
 
 
 button.addEventListener('click', function() {
-	var n = (document.querySelector('.input_n')).value;
+	let n = (document.querySelector('.input_n')).value;
+	let func = document.querySelector('.func').value;
 	
-	for (let i = 0; i < Math.pow(2, n); i++) {
-		
-	}
+	input_f = Array.from(func);
 
-	var js = document.createElement("script");
+	input_f.length = Math.pow(2, n);
+
+	let elem = document.querySelector('.f_table');
+	createTable(elem, 10, 4);
+
+
+	let js = document.createElement("script");
 	js.type = 'text/javascript';
 	js.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML';
 	document.body.appendChild(js);
