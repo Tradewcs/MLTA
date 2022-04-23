@@ -6,7 +6,7 @@ function createTable(parent, cols, rows) {
 
 	for (let i = 0; i < rows; i++) {
 		let tr = document.createElement('tr');
-		
+
 		for (let j = 0; j < cols; j++) {
 			let td = document.createElement('td');
 			tr.appendChild(td);
@@ -27,8 +27,11 @@ button.addEventListener('click', function() {
 
 	input_f.length = Math.pow(2, n);
 
-	let elem = document.querySelector('.f_table');
-	createTable(elem, 10, 4);
+	let table = document.querySelector('.f_table');
+	table.innerHTML = '';
+	createTable(table, n + 1, 2);
+	createTable(table, Math.pow(2, n) + 1, n + 1);
+	// table.innerHTML = n;
 
 
 	let js = document.createElement("script");
