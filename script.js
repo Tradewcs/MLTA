@@ -1,5 +1,11 @@
 
 var button = document.querySelector('.calculate_button');
+var links = ['https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML', 'cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'];
+let count = 0;
+
+let delete_script = document.querySelector('.delete_script');
+let append_script = document.querySelector('.append_script');
+
 
 function fillBeginWithZero(str, neededLength) {
 	let tmp_str = '';
@@ -78,17 +84,27 @@ function createTable(parent, cols, rows, func) {
 
 
 function buildPDNF(parent, minterm_arr, varCount) {
+
 	let div = document.createElement('div');
-
 	div.innerHTML += `\\[f(\\tilde{x}^{_${varCount}}) = `;
+	
+	if (minterm_arr.length) {
 
-	for (let i = 0; i < minterm_arr.length; i++) {
-		div.innerHTML += `(${minterm_arr[i]})`;
+		div.innerHTML += minterm_arr[0];
+		for (let i = 1; i < minterm_arr.length; i++) {
+			div.innerHTML += '\\vee ' + minterm_arr[i];
+		}
+		div.innerHTML += '\\]';
+
+	} else {
+		div.innerHTML += '0\\]'
 	}
-	div.innerHTML += '\\]';
-
+	
 	parent.appendChild(div);
 }
+
+
+
 
 
 button.addEventListener('click', function() {
@@ -102,11 +118,65 @@ button.addEventListener('click', function() {
 
 	buildPDNF(PDNF, minterm_arr, n);
 
-	let js = document.createElement("script");
-	js.type = 'text/javascript';
-	js.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML';
-	document.body.appendChild(js);
+	// let js = document.getElementById('LaTeXscript');
+	// reload_js(js);
+	// console.log(js);
+	// js.src = '';
+	// js.remove();
+	
+	// js = document.createElement('script');
+	// js.classList.add('LaTeXscript');
+	// js.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML';
+	
+	// document.body.append(js);
+	
+	console.log(document.body);
+	
+	let script = document.createElement('script');
+
+	// let script = document.getElementById('LaTeXscript');
+	script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML';
+	
+	script.classList.add('LaTeXscript');
+	document.body.appendChild(script);
 })
+
+delete_script.addEventListener('click', function() {
+	let script = document.querySelector('.LaTeXscript');
+
+	// script.src = 'foo.js';
+	script.remove();
+
+	console.log(document.body);
+})
+
+append_script.addEventListener('click', function add_scr() {
+	let script = document.createElement('script');
+
+	// let script = document.getElementById('LaTeXscript');
+	script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML';
+	
+	script.classList.add('LaTeXscript');
+	document.body.appendChild(script);
+
+	console.log(document.body);
+})
+
+// function reload_js(script) {
+// 	let script_cpy = script;
+// 	console.log(document.body);
+// 	script_cpy.src = links[count++];
+// 	script.remove();
+
+// 	document.body.appendChild(script_cpy);
+// }
+
+
+
 
 // document.body.innerHTML = `123`
 // document.body.innerHTML += `qwe`
+
+/*
+https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML
+*/
